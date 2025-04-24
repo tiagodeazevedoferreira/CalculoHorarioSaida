@@ -1,10 +1,10 @@
 {
-  "name": "Horário de Saída",
-  "short_name": "Saída",
+  "name": "Controle de Jogos de Futebol",
+  "short_name": "Jogos Futebol",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4f46e5",
+  "theme_color": "#1e40af",
   "icons": [
     {
       "src": "icon.png",
