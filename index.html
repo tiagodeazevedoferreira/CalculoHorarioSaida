@@ -47,10 +47,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="theme-color" content="#4f46e5">
   <title>Horário de Saída</title>
+  <link rel="stylesheet" href="./tailwind.min.css">
   <link rel="stylesheet" href="./styles.css">
   <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="./icon.png">
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
   <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
@@ -68,6 +68,7 @@
         <label class="block text-sm font-medium text-gray-700">Volta do Almoço</label>
         <input type="time" id="lunchEnd" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
       </div>
+      <div id="errorMessage" class="hidden text-red-700 bg-red-100 p-2 rounded mt-2 text-center"></div>
       <div class="text-center">
         <p class="text-lg font-semibold text-gray-800">Saída: <span id="exitTime" class="text-indigo-600">--:--</span></p>
       </div>

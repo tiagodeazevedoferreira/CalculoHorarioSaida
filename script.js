@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const lunchStart = document.getElementById('lunchStart');
   const lunchEnd = document.getElementById('lunchEnd');
   const exitTime = document.getElementById('exitTime');
+  const errorDiv = document.getElementById('errorMessage');
+
+  // Carregar valores salvos do localStorage
+  entryTime.value = localStorage.getItem('entryTime') || '';
+  lunchStart.value = localStorage.getItem('lunchStart') || '';
+  lunchEnd.value = localStorage.getItem('lunchEnd') || '';
+  calculateExitTime();
 
   function calculateExitTime() {
     const entry = entryTime.value;
@@ -11,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!entry || !lunchS || !lunchE) {
       exitTime.textContent = '--:--';
+      errorDiv.textContent = '';
+      errorDiv.classList.add('hidden');
       return;
     }
 
@@ -27,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Validate time sequence
     if (lunchStartMin <= entryMin || lunchEndMin <= lunchStartMin) {
       exitTime.textContent = 'Erro';
+      errorDiv.textContent = 'Horários inválidos. Verifique se a saída para almoço é após a entrada e a volta é após a saída.';
+      errorDiv.classList.remove('hidden');
       return;
     }
 
@@ -47,11 +58,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     exitTime.textContent = formatTime(exitMin);
+    errorDiv.textContent = '';
+    errorDiv.classList.add('hidden');
   }
 
-  entryTime.addEventListener('input', calculateExitTime);
-  lunchStart.addEventListener('input', calculateExitTime);
-  lunchEnd.addEventListener('input', calculateExitTime);
+  // Salvar valores no localStorage e recalcular
+  entryTime.addEventListener('input', () => {
+    localStorage.setItem('entryTime', entryTime.value);
+    calculateExitTime();
+  });
+  lunchStart.addEventListener('input', () => {
+    localStorage.setItem('lunchStart', lunchStart.value);
+    calculateExitTime();
+  });
+  lunchEnd.addEventListener('input', () => {
+    localStorage.setItem('lunchEnd', lunchEnd.value);
+    calculateExitTime();
+  });
 
   // Register service worker
   if ('serviceWorker' in navigator) {
