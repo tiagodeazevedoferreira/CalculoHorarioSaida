@@ -2,15 +2,3 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
-
-.hidden {
-  display: none;
-}
-
-input[type="time"] {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-input[type="time"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* Inverte a cor do ícone para branco */
-}
