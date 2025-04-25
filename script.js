@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const lunchEnd = document.getElementById('lunchEnd');
   const exitTime = document.getElementById('exitTime');
 
+  // Carregar valores salvos do localStorage
+  entryTime.value = localStorage.getItem('entryTime') || '';
+  lunchStart.value = localStorage.getItem('lunchStart') || '';
+  lunchEnd.value = localStorage.getItem('lunchEnd') || '';
+  calculateExitTime();
+
   function calculateExitTime() {
     const entry = entryTime.value;
     const lunchS = lunchStart.value;
@@ -49,9 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
     exitTime.textContent = formatTime(exitMin);
   }
 
-  entryTime.addEventListener('input', calculateExitTime);
-  lunchStart.addEventListener('input', calculateExitTime);
-  lunchEnd.addEventListener('input', calculateExitTime);
+  // Salvar valores no localStorage e recalcular
+  entryTime.addEventListener('input', () => {
+    localStorage.setItem('entryTime', entryTime.value);
+    calculateExitTime();
+  });
+  lunchStart.addEventListener('input', () => {
+    localStorage.setItem('lunchStart', lunchStart.value);
+    calculateExitTime();
+  });
+  lunchEnd.addEventListener('input', () => {
+    localStorage.setItem('lunchEnd', lunchEnd.value);
+    calculateExitTime();
+  });
 
   // Register service worker
   if ('serviceWorker' in navigator) {
