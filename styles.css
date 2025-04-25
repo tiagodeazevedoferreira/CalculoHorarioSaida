@@ -11,7 +11,6 @@ input[type="time"] {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="time"]:focus {
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Inverte a cor do ícone para branco */
 }
